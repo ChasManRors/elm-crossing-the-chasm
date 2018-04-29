@@ -7799,7 +7799,10 @@ var _user$project$Login$add = F2(
 	function (a, b) {
 		return a + b;
 	});
-var _user$project$Login$result = A2(_user$project$Login$add, 1, 2);
+var _user$project$Login$result = A2(
+	_user$project$Login$add,
+	10,
+	A2(_user$project$Login$add, 1, 2));
 var _user$project$Login$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(
 	_elm_lang$html$Html$text(
 		_elm_lang$core$Basics$toString(_user$project$Login$result)));
