@@ -1,0 +1,32 @@
+var _user$project$Exercise21$b = 'Barney';
+var _user$project$Exercise21$a = 'Fred';
+var _user$project$Exercise21_ops = _user$project$Exercise21_ops || {};
+_user$project$Exercise21_ops['~='] = F2(
+	function (a, b) {
+		return _elm_lang$core$Native_Utils.eq(
+			A2(_elm_lang$core$String$left, 1, a),
+			A2(_elm_lang$core$String$left, 1, b));
+	});
+var _user$project$Exercise21$result = F2(
+	function (a, b) {
+		return A2(_user$project$Exercise21_ops['~='], a, b);
+	});
+var _user$project$Exercise21$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(
+	_elm_lang$html$Html$text(
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			'The first letter of the names ',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$Exercise21$a,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					' and ',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_user$project$Exercise21$b,
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							' are the same: ',
+							_elm_lang$core$Basics$toString(
+								A2(_user$project$Exercise21$result, _user$project$Exercise21$a, _user$project$Exercise21$b)))))))));
