@@ -7795,24 +7795,45 @@ var _elm_lang$html$Html$summary = _elm_lang$html$Html$node('summary');
 var _elm_lang$html$Html$menuitem = _elm_lang$html$Html$node('menuitem');
 var _elm_lang$html$Html$menu = _elm_lang$html$Html$node('menu');
 
-var _user$project$Login$add = F2(
-	function (a, b) {
-		return a + b;
+var _user$project$Exercise31$free = F3(
+	function (purchase, receive, item) {
+		return (_elm_lang$core$Native_Utils.cmp(item.qty, purchase) > -1) ? _elm_lang$core$Native_Utils.update(
+			item,
+			{freeQty: receive}) : item;
 	});
-var _user$project$Login$result = function (a) {
-	return _elm_lang$core$Native_Utils.eq(
-		A2(_elm_lang$core$Basics_ops['%'], a, 2),
-		0);
-}(
-	A2(_user$project$Login$add, 1, 2));
-var _user$project$Login$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(
+var _user$project$Exercise31$logic = function (_p0) {
+	return A3(
+		_user$project$Exercise31$free,
+		10,
+		3,
+		A3(_user$project$Exercise31$free, 5, 1, _p0));
+};
+var _user$project$Exercise31$cart = {
+	ctor: '::',
+	_0: {name: 'Lemon', qty: 1, freeQty: 0},
+	_1: {
+		ctor: '::',
+		_0: {name: 'Apple', qty: 5, freeQty: 0},
+		_1: {
+			ctor: '::',
+			_0: {name: 'Pear', qty: 10, freeQty: 0},
+			_1: {ctor: '[]'}
+		}
+	}
+};
+var _user$project$Exercise31$newCart = A2(_elm_lang$core$List$map, _user$project$Exercise31$logic, _user$project$Exercise31$cart);
+var _user$project$Exercise31$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(
 	_elm_lang$html$Html$text(
-		_elm_lang$core$Basics$toString(_user$project$Login$result)));
+		_elm_lang$core$Basics$toString(_user$project$Exercise31$newCart)));
+var _user$project$Exercise31$Item = F3(
+	function (a, b, c) {
+		return {name: a, qty: b, freeQty: c};
+	});
 
 var Elm = {};
-Elm['Login'] = Elm['Login'] || {};
-if (typeof _user$project$Login$main !== 'undefined') {
-    _user$project$Login$main(Elm['Login'], 'Login', undefined);
+Elm['Exercise31'] = Elm['Exercise31'] || {};
+if (typeof _user$project$Exercise31$main !== 'undefined') {
+    _user$project$Exercise31$main(Elm['Exercise31'], 'Exercise31', undefined);
 }
 
 if (typeof define === "function" && define['amd'])

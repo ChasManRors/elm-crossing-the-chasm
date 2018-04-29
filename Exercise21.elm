@@ -11,7 +11,7 @@ result a b =
     a ~= b
 
 a =
-    "Blake"
+    "Fred"
 b =
     "Barney"
 
