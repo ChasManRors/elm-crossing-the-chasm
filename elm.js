@@ -8260,11 +8260,11 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _user$project$Exercise41$Model = F2(
-	function (a, b) {
-		return {calories: a, input: b};
+var _user$project$Exercise41$Model = F3(
+	function (a, b, c) {
+		return {calories: a, input: b, error: c};
 	});
-var _user$project$Exercise41$initModel = A2(_user$project$Exercise41$Model, 0, 0);
+var _user$project$Exercise41$initModel = A3(_user$project$Exercise41$Model, 0, 0, _elm_lang$core$Maybe$Nothing);
 var _user$project$Exercise41$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
@@ -8274,14 +8274,19 @@ var _user$project$Exercise41$update = F2(
 					model,
 					{calories: model.calories + model.input, input: 0});
 			case 'Input':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						input: A2(
-							_elm_lang$core$Result$withDefault,
-							0,
-							_elm_lang$core$String$toInt(_p0._0))
-					});
+				var _p1 = _elm_lang$core$String$toInt(_p0._0);
+				if (_p1.ctor === 'Ok') {
+					return _elm_lang$core$Native_Utils.update(
+						model,
+						{input: _p1._0, error: _elm_lang$core$Maybe$Nothing});
+				} else {
+					return _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							error: _elm_lang$core$Maybe$Just(_p1._0),
+							input: 0
+						});
+				}
 			default:
 				return _user$project$Exercise41$initModel;
 		}
@@ -8312,36 +8317,33 @@ var _user$project$Exercise41$view = function (model) {
 			_1: {
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$p,
+					_elm_lang$html$Html$input,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('story'),
-						_1: {ctor: '[]'}
+						_0: _elm_lang$html$Html_Attributes$type_('text'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Events$onInput(_user$project$Exercise41$Input),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$value(
+									_elm_lang$core$Native_Utils.eq(model.input, 0) ? '' : _elm_lang$core$Basics$toString(model.input)),
+								_1: {ctor: '[]'}
+							}
+						}
 					},
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html$text('Once'),
-						_1: {ctor: '[]'}
-					}),
+					{ctor: '[]'}),
 				_1: {
 					ctor: '::',
 					_0: A2(
-						_elm_lang$html$Html$input,
+						_elm_lang$html$Html$div,
+						{ctor: '[]'},
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$type_('text'),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$html$Html_Events$onInput(_user$project$Exercise41$Input),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$value(
-										_elm_lang$core$Native_Utils.eq(model.input, 0) ? '' : _elm_lang$core$Basics$toString(model.input)),
-									_1: {ctor: '[]'}
-								}
-							}
-						},
-						{ctor: '[]'}),
+							_0: _elm_lang$html$Html$text(
+								A2(_elm_lang$core$Maybe$withDefault, '', model.error)),
+							_1: {ctor: '[]'}
+						}),
 					_1: {
 						ctor: '::',
 						_0: A2(

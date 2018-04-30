@@ -11,18 +11,13 @@ import Html.Events exposing (..)
 type alias Model =
     { calories : Int
     , input : Int
-
-    -- , error : Maybe String
+    , error : Maybe String
     }
 
 
 initModel : Model
-initModel = Model 0 0
-    -- { calories = 0
-    -- , input = 0
-
-    -- -- , error = Nothing
-    -- }
+initModel =
+    Model 0 0 Nothing
 
 
 
@@ -45,7 +40,18 @@ update msg model =
             }
 
         Input val ->
-            { model | input = (String.toInt val |> Result.withDefault 0) }
+            case String.toInt val of
+                Ok input ->
+                    { model
+                        | input = input
+                        , error = Nothing
+                    }
+
+                Err err ->
+                    { model
+                        | error = Just err
+                        , input = 0
+                    }
 
         Clear ->
             initModel
@@ -60,8 +66,6 @@ view model =
     div []
         [ h3 []
             [ text ("Total Calories: " ++ (toString model)) ]
-        , p [ class "story" ]
-            [ text "Once" ]
         , input
             [ type_ "text"
             , onInput Input
@@ -73,6 +77,8 @@ view model =
                 )
             ]
             []
+        , div []
+            [ text (Maybe.withDefault "" model.error) ]
         , button
             [ type_ "button"
             , onClick AddCalorie
