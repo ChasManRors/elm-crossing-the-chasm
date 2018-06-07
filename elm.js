@@ -8260,43 +8260,38 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _user$project$Exercise41$Model = F3(
+var _user$project$Main$Model = F3(
 	function (a, b, c) {
 		return {calories: a, input: b, error: c};
 	});
-var _user$project$Exercise41$initModel = A3(_user$project$Exercise41$Model, 0, 0, _elm_lang$core$Maybe$Nothing);
-var _user$project$Exercise41$update = F2(
+var _user$project$Main$initModel = A3(_user$project$Main$Model, 0, 0, _elm_lang$core$Maybe$Nothing);
+var _user$project$Main$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
-		switch (_p0.ctor) {
-			case 'AddCalorie':
+		if (_p0.ctor === 'Input') {
+			var _p1 = _elm_lang$core$String$toInt(_p0._0);
+			if (_p1.ctor === 'Ok') {
 				return _elm_lang$core$Native_Utils.update(
 					model,
-					{calories: model.calories + model.input, input: 0});
-			case 'Input':
-				var _p1 = _elm_lang$core$String$toInt(_p0._0);
-				if (_p1.ctor === 'Ok') {
-					return _elm_lang$core$Native_Utils.update(
-						model,
-						{input: _p1._0, error: _elm_lang$core$Maybe$Nothing});
-				} else {
-					return _elm_lang$core$Native_Utils.update(
-						model,
-						{
-							error: _elm_lang$core$Maybe$Just(_p1._0),
-							input: 0
-						});
-				}
-			default:
-				return _user$project$Exercise41$initModel;
+					{input: _p1._0, error: _elm_lang$core$Maybe$Nothing});
+			} else {
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						input: 0,
+						error: _elm_lang$core$Maybe$Just(_p1._0)
+					});
+			}
+		} else {
+			return _user$project$Main$initModel;
 		}
 	});
-var _user$project$Exercise41$Clear = {ctor: 'Clear'};
-var _user$project$Exercise41$Input = function (a) {
+var _user$project$Main$Clear = {ctor: 'Clear'};
+var _user$project$Main$Input = function (a) {
 	return {ctor: 'Input', _0: a};
 };
-var _user$project$Exercise41$AddCalorie = {ctor: 'AddCalorie'};
-var _user$project$Exercise41$view = function (model) {
+var _user$project$Main$AddCalorie = {ctor: 'AddCalorie'};
+var _user$project$Main$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{ctor: '[]'},
@@ -8317,83 +8312,51 @@ var _user$project$Exercise41$view = function (model) {
 			_1: {
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$input,
+					_elm_lang$html$Html$button,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$type_('text'),
+						_0: _elm_lang$html$Html_Attributes$type_('button'),
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$html$Html_Events$onInput(_user$project$Exercise41$Input),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$value(
-									_elm_lang$core$Native_Utils.eq(model.input, 0) ? '' : _elm_lang$core$Basics$toString(model.input)),
-								_1: {ctor: '[]'}
-							}
+							_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$AddCalorie),
+							_1: {ctor: '[]'}
 						}
 					},
-					{ctor: '[]'}),
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('Add'),
+						_1: {ctor: '[]'}
+					}),
 				_1: {
 					ctor: '::',
 					_0: A2(
-						_elm_lang$html$Html$div,
-						{ctor: '[]'},
+						_elm_lang$html$Html$button,
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html$text(
-								A2(_elm_lang$core$Maybe$withDefault, '', model.error)),
+							_0: _elm_lang$html$Html_Attributes$type_('button'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$Clear),
+								_1: {ctor: '[]'}
+							}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('Clear'),
 							_1: {ctor: '[]'}
 						}),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$button,
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$type_('button'),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$html$Html_Events$onClick(_user$project$Exercise41$AddCalorie),
-									_1: {ctor: '[]'}
-								}
-							},
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html$text('Add'),
-								_1: {ctor: '[]'}
-							}),
-						_1: {
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$button,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$type_('button'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Events$onClick(_user$project$Exercise41$Clear),
-										_1: {ctor: '[]'}
-									}
-								},
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text('Clear'),
-									_1: {ctor: '[]'}
-								}),
-							_1: {ctor: '[]'}
-						}
-					}
+					_1: {ctor: '[]'}
 				}
 			}
 		});
 };
-var _user$project$Exercise41$main = _elm_lang$html$Html$beginnerProgram(
-	{model: _user$project$Exercise41$initModel, update: _user$project$Exercise41$update, view: _user$project$Exercise41$view})();
+var _user$project$Main$main = _elm_lang$html$Html$beginnerProgram(
+	{model: _user$project$Main$initModel, update: _user$project$Main$update, view: _user$project$Main$view})();
 
 var Elm = {};
-Elm['Exercise41'] = Elm['Exercise41'] || {};
-if (typeof _user$project$Exercise41$main !== 'undefined') {
-    _user$project$Exercise41$main(Elm['Exercise41'], 'Exercise41', undefined);
+Elm['Main'] = Elm['Main'] || {};
+if (typeof _user$project$Main$main !== 'undefined') {
+    _user$project$Main$main(Elm['Main'], 'Main', undefined);
 }
 
 if (typeof define === "function" && define['amd'])
